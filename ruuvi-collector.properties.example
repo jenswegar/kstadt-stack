@@ -1,0 +1,70 @@
+# These are the defaults
+# Copy this file as "ruuvi-collector.properties" to the same directory as the collector application itself is and
+# uncomment the lines and change the values, if you need
+
+# Base url to connect to, including protocol, hostname or ip address, and port
+#influxUrl=http://localhost:8086
+
+# InfluxDB Database to use for measurements
+#influxDatabase=ruuvi
+
+# InfluxDB measurement name to use for measurements
+#influxMeasurement=ruuvi_measurements
+
+# Username and password to use in influxdb. These can be ignored if you don't use authentication in InfluxDB.
+#influxUser=ruuvi
+#influxPassword=ruuvi
+
+# Minimum interval in milliseconds for measurements per measurement type per tag.
+# This is to avoid saving too many measurements especially with the default firmware which sends measurements every 0.5 seconds
+# For example 9900 means post at most one measurement type per tag per 9.9 seconds
+#measurementUpdateLimit=9900
+
+# Filtering for sources based on the source MAC address (blacklist or whitelist)
+# Valid values "none", "blacklist" and "whitelist". 
+# none      = Allows any source to be stored (default)
+# blacklist = Allows all sources EXCEPT those listed
+# whitelist = Allows ONLY sources that are listed
+#filter.mode=none
+
+# Mac addresses to blacklist/whitelist. This has no effect if filter.mode is set to none
+#filter.macs=ABCDEF012345,F1E2D3C4B5A6
+
+# Storage method, currently valid values: "influxdb", "legacy_influxdb" and "dummy"
+# influxdb        = Recommended and default, this stores the values to InfluxDB into a single measurement
+# influxdb_legacy = The old format used by this collector on versions before 0.2.0, stores values into separate measurements.
+#                   NOTE: influxdb_legacy is no longer supported, you should use the new influxdb format and migrate old data, see CHANGELOG.md
+# dummy           = Logs the measurements to the log rather than sending them anywhere, feasible for testing and development
+#storage.method=influxdb
+
+# Values to store, the collector is capable of calculating additional values from the values received from a tag, for example absolute humdity and dew point
+# Valid values "raw" and "extended"
+# raw      = Save only the raw values received from the tag
+# extended = In addition to the above, calculate additional values such as absolute humidity, dew point, total acceleration and air density
+#            NOTE: the influxdb_legacy storage method does not support extended values
+#storage.values=extended
+
+
+#
+# Advanced configuration - Change these only if you know what you are doing
+#
+
+# Commands for starting the BLE scanning and the dump.
+# The scan command is only executed, output and exit is ignored. Setting this blank will disable this command.
+# The dump command is executed and it's output is parsed, the collector will exit when/if this command ends
+# In general you want to change these only if you intend to use wrapper scripts or you need to use absolute paths to the executables
+#command.scan=hcitool lescan --duplicates --passive
+#command.dump=hcidump --raw
+
+# Retention policy to use (note: you must create it yourself)
+#influxRetentionPolicy=autogen
+
+# Use gzip, saves bandwidth at minimal CPU cost
+#influxGzip=true
+
+# Use batch mode, improved performance at the cost of increased delay for measurements to show up. Does not affect the timestamps.
+#influxBatch=true
+
+# Maximum number of datapoints and maximum time waited in milliseconds before sending a batch. Has no effect if batch mode disabled.
+#influxBatchMaxSize=2000
+#influxBatchMaxTime=100
