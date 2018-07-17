@@ -69,6 +69,15 @@ and build docker image locally with
 docker build -t ruuvi-collector .
 ```
 
+other requirements (see RuuviCollector setup instructions): 
+```
+sudo apt-get install bluez-hcidump
+```
+
+```
+sudo setcap 'cap_net_raw,cap_net_admin+eip' `which hcitool`
+sudo setcap 'cap_net_raw,cap_net_admin+eip' `which hcidump`
+```
 
 
 ## Running the stack
