@@ -92,7 +92,7 @@ In the same folder, create the files
 - ruuvi-collector.properties
 - ruuvi-names.properties
 
-based on the example files and fill them out with your own values. (see RuuviCollector project for help on these files)
+based on the example files and fill them out with your own values. (see RuuviCollector project for help on these files). One suggestion is to set the whitelist filter to allow only the mac-addresses of the tags.
 
 Run the stack
 ```
