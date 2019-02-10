@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   ruuvi-collector:
-    image: ruuvi-collector:latest
+    image: jenswegar/ruuvi-collector:latest
     privileged: true
     restart: unless-stopped
     volumes:
