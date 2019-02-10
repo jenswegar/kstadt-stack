@@ -1,7 +1,10 @@
 version: '3.2'
 services:
   ruuvi-collector:
-    image: jenswegar/ruuvi-collector:latest
+    # Use a locally built image for Raspberry Pi's until we've figured out how
+    # to have Docker cloud build for ARM architecture directly without hackish installs 
+    # of emulator libs
+    image: ruuvi-collector:latest
     privileged: true
     restart: unless-stopped
     volumes:
