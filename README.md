@@ -12,8 +12,6 @@ This is a docker stack I use for collecting RuuviTag metrics and storing them in
 
 ### Additional software
 
-
-
 Git
 ```
 sudo apt-get update && sudo apt-get install git
@@ -22,7 +20,7 @@ sudo apt-get update && sudo apt-get install git
 Clone this repository to a folder on the Rpi
 
 
-Docker
+Install Docker
 ```
 curl -sSL https://get.docker.com | sh
 ```
@@ -98,3 +96,25 @@ Run the stack
 ```
 docker-compose up -d
 ```
+
+
+## Troubleshooting
+
+It seems the stack stops collecting metrics sometimes, for no apparent reason (still need to investigate this).
+
+The first thing to try would be a clean reboot, by ssh into the rpi and issuing the command
+
+```
+sudo reboot now
+```
+
+Usually this helps, but if not, some more commands to try in order to reset the hci and bluetooth daemons.
+
+```
+sudo hciconfig hci0 down
+sudo hciconfig hci0 up
+
+sudo service bluetooth restart
+sudo service dbus restart
+```
+
