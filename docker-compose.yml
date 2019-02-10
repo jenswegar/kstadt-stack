@@ -24,7 +24,7 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_ADMIN_PASSWORD}
 
   grafana:
-    image: fg2it/grafana-armhf:v5.4.3
+    image: grafana/grafana-arm32v7-linux:5.4.3
     ports:
       - "3000:3000"
     volumes:
